@@ -44,6 +44,8 @@ all_sprites.add(sprite2)
 
 running, won = True, False
 clock = pygame.time.Clock()     
+ 
+score=0
 
 while running:
     
@@ -62,7 +64,15 @@ while running:
         
         if sprite1.rect.colliderect(sprite2.rect):
             all_sprites.remove(sprite2)
-            won=True
+         
+            sprite2.rect.x = random.randint(0, SCREEN_WIDTH - sprite2.rect.width)
+            sprite2.rect.y = random.randint(0, SCREEN_HEIGHT - sprite2.rect.width)
+            all_sprites.add(sprite2)
+            
+            score=score+1
+            
+            if score >=5:
+                won=True
             
     screen.blit(background_image,(0,0))
     all_sprites.draw(screen)
